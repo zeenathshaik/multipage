@@ -1,0 +1,97 @@
+<html>
+
+<head>
+    <title>loggedin</title>
+    <link rel="stylesheet" href="style.css"/>
+    
+    <script src="second.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-database.js"></script>>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+    </head>
+<body>
+    <button id="logout" onclick="logout();" class="btn btn-danger">Logout</button>
+    <center>
+  <h1>WorldTalk</h1>
+  <h2>Explore the world!</h2>
+   <h2 id="names"></h2>
+        <div>
+    <label>Lets go!</label>
+    <input type="text" id="searchbox" class="form-control" placeholder="search"/>
+        
+    </div> <br>
+    <button id="btn1" class="btn btn-primary" onclick="addroom()">Search</button>
+    
+
+        <div id="root"></div>
+    </center>
+    </body>
+    
+<style>
+    body{
+        background-color: lightblue;
+    }
+    h1{
+       font-family: cursive; 
+    }
+    </style>
+    <script>
+  // Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDJRg1v63qQtpiE-p2KrNYdl-nin0mGOwk",
+  authDomain: "multipage-9ed66.firebaseapp.com",
+  databaseURL: "https://multipage-9ed66-default-rtdb.firebaseio.com",
+  projectId: "multipage-9ed66",
+  storageBucket: "multipage-9ed66.appspot.com",
+  messagingSenderId: "39171990308",
+  appId: "1:39171990308:web:585b21790e2228757a89b1",
+  measurementId: "G-MVFPLTDQC0"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+       
+console.log(firebase)
+       let root=document.getElementById("root");
+        let searchbox=document.getElementById("searchbox");
+        
+    var username=localStorage.getItem("name of the user");
+document.getElementById("names").innerHTML = "Hey.." + username;
+function logout(){
+    window.location="index.html";
+}
+        function addroom(){
+    addroom1=document.getElementById("searchbox").value;
+    firebase.database().ref("/").child(addroom1).update({
+        purpose:addroom1
+        
+    });
+            
+               let newElement=document.createElement("h1");
+   newElement.textContent=searchbox.value;
+   
+  root.appendChild(newElement); 
+            let hr=document.createElement("hr");
+    root.appendChild(hr)
+
+    
+   newElement.onclick=function(){
+       window.location="third.html"
+ }
+  searchbox.value="";
+   
+};
+        
+   
+
+
+    
+ </script>
+
